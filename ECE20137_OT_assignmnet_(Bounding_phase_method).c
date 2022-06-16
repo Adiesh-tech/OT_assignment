@@ -1,11 +1,10 @@
 /* program to demonstrate the usage of the bounding phase method in C. */
 #include <stdio.h>
 #include <math.h>
-#include <conio.h>
 float func(float a)
 {
     float function1 = 2*(pow(a,4)) - (pow(a,3)) + 5*(pow(a,2)) - 12*a + 1;// the given function
-    //float function2 = pow(a,2)+(54/a);
+    //float function1 = pow(a,2)+(54/a);
     return function1;
 }
 int main()
@@ -38,8 +37,14 @@ int main()
         buff = x + pow(2,k)*delta ; //iterative formula to find the next point
         while(func(buff)<func(x))
         {
+            printf("\n");
+            printf("Iteration: %.1f\n",k+1);
             pre = x ;
             x = buff ;
+            printf("function values\n");
+            printf("function(x): %f\n",func(x));
+            printf("function(buff): %f\n",func(buff));
+            printf("\n");
             k++;
             buff = x + pow(2,k)*delta ;
         }
