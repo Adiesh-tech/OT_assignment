@@ -1,55 +1,68 @@
-/* program to demonstrate the usage of the bounding phase method in C. */
 #include <stdio.h>
 #include <math.h>
+
+
 float func(float a)
 {
-    float function1 = 2*(pow(a,4)) - (pow(a,3)) + 5*(pow(a,2)) - 12*a + 1;// the given function
+    float function1 = 2*(pow(a,4)) - (pow(a,3)) + 5*(pow(a,2)) - 12*a + 1;
     //float function1 = pow(a,2)+(54/a);
     return function1;
 }
+
+
 int main()
 {
-    float start, end, k = 0, delta, x, buff, pre;//declaration of variables
-    printf (" \n Enter the initial guess point: ");  // inputing of the initial value
-    scanf (" %f", &x);
-    printf (" \n Enter the increment value: ");  // inputing of the increment value
+    float decrement, increment, k = 0, delta, x_initial, x_next, pre;
+
+    printf (" \n Enter the initial guess point: ");
+    scanf (" %f", &x_initial);
+    printf (" \n Enter the increment value: ");
     scanf (" %f", &delta);
+
     //x = 0;
     //delta = 1;
-    start = x - delta ; // the point towards the left of the initial point
-    end = x + delta ; // the point towards the right of the initial point
 
-    if(func(start)>=func(x)&&func(x)<=func(end))
+    decrement = x_initial - delta ;
+    increment = x_initial + delta ;
+
+    if(func(decrement)>=func(x_initial)&&func(x_initial)<=func(increment))
     {
-        printf(" \n The Minimum of the function lies in between %f and %f",start, end);
+        printf(" \n The Minimum of the function lies in between %f and %f",decrement, increment);
     }
-    else // choosing the sign of the delta value that is increment value
+
+
+    else if(func(decrement)<=func(x_initial)&&func(x_initial)>=func(increment)){
+        printf("The Given function is not a uni model function, which means it contain two or more minimum points");
+    }
+
+
+    else
     {
-        if(func(start)>=func(x)&&func(x)>=func(end))
+        if(func(decrement)>=func(x_initial)&&func(x_initial)>=func(increment))
         {
             delta = delta ;
         }
-        if(func(start)<=func(x)&&func(x)<=func(end))
+
+
+        else if(func(decrement)<=func(x_initial)&&func(x_initial)<=func(increment))
         {
             delta = -delta ;
         }
 
-        buff = x + pow(2,k)*delta ; //iterative formula to find the next point
-        while(func(buff)<func(x))
+
+        x_next = x_initial + pow(2,k)*(delta) ;
+        while(func(x_next)<func(x_initial))
         {
-            printf("\n");
-            printf("Iteration: %.1f\n",k+1);
-            pre = x ;
-            x = buff ;
-            printf("function values\n");
-            printf("function(x): %f\n",func(x));
-            printf("function(buff): %f\n",func(buff));
-            printf("\n");
+            printf("\nIteration: %.1f\n",k+1);
+            printf("function values\nfunction(x_initial): %f\nfunction(x_next): %f\n\n",func(x_initial),func(x_next));
+            pre = x_initial ;
+            x_initial = x_next;
+
             k++;
-            buff = x + pow(2,k)*delta ;
+            x_next = x_next + pow(2,k)*delta ;
         }
-        printf(" \n The Minimum of the function lies in between %f and %f",pre,buff);
-        printf(" \n The number of iterations are %f",k);
+        printf("\nf(x_initial): %f\nf(x_next):%f\nf(x_next) > f(x_initial) is satisfied",func(x_initial),func(x_next));
+        printf("\nSo, The Minimum of the function lies in between %f and %f \n The number of iterations are %f",pre,x_next,k);
     }
     return 0;
 }
