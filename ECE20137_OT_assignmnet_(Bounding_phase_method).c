@@ -54,7 +54,7 @@ int main()
         while(func(x_next)<func(x_initial))
         {
             printf("\nIteration: %.1f\n",k+1);
-            printf("function values\nfunction(x_initial): %f\nfunction(x_next): %f\n\n",func(x_initial),func(x_next));
+            printf("function values\nx_initial: %f\nfunction(x_initial): %f\nx_next: %f\nfunction(x_next): %f\n\n",x_initial,func(x_initial),x_next,func(x_next));
             pre = x_initial ;
             x_initial = x_next;
 
