@@ -19,7 +19,7 @@ int main()
     printf (" \n Enter the increment value: ");
     scanf (" %f", &delta);
 
-    //x = 0;
+    //x_next = 0;
     //delta = 1;
 
     decrement = x_initial - delta ;
