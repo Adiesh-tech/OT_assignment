@@ -20,7 +20,7 @@ int main()
     scanf (" %f", &delta);
 
     //x_next = 0;
-    //delta = 1;
+    //delta = 0.0001;
 
     decrement = x_initial - delta ;
     increment = x_initial + delta ;
@@ -28,11 +28,6 @@ int main()
     if(func(decrement)>=func(x_initial)&&func(x_initial)<=func(increment))
     {
         printf(" \n The Minimum of the function lies in between %f and %f",decrement, increment);
-    }
-
-
-    else if(func(decrement)<=func(x_initial)&&func(x_initial)>=func(increment)){
-        printf("The Given function is not a uni model function, which means it contain two or more minimum points");
     }
 
 
@@ -54,7 +49,7 @@ int main()
         while(func(x_next)<func(x_initial))
         {
             printf("\nIteration: %.1f\n",k+1);
-            printf("function values\nx_initial: %f\nfunction(x_initial): %f\nx_next: %f\nfunction(x_next): %f\n\n",x_initial,func(x_initial),x_next,func(x_next));
+            printf("function values\nfunction(x_initial): %f\nfunction(x_next): %f\n\n",func(x_initial),func(x_next));
             pre = x_initial ;
             x_initial = x_next;
 
